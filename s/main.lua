@@ -50,8 +50,8 @@ AddEventHandler('boss_phonograph:server:saveOwner', function(id)
     local src = source
     ownerPhonograph[src] = id
 
-    printTable(currentlyPlaying)
-    printTable(ownerPhonograph)
+    -- printTable(currentlyPlaying)
+    -- printTable(ownerPhonograph)
 end)
 
 RegisterNetEvent('boss_phonograph:server:pickUp')
@@ -65,9 +65,9 @@ AddEventHandler('boss_phonograph:server:pickUp', function(id)
         if currentlyPlaying[id] then
             TriggerClientEvent('boss_phonograph:client:stopMusic', -1, id)
             currentlyPlaying[id] = nil  -- Remove from playing list
-            print("[boss_phonograph] Music stopped for Phonograph ID: " .. id)
+            -- print("[boss_phonograph] Music stopped for Phonograph ID: " .. id)
         else
-            print("[boss_phonograph] No music playing for Phonograph ID: " .. id)
+            -- print("[boss_phonograph] No music playing for Phonograph ID: " .. id)
         end
 
         -- Remove ownership
@@ -76,22 +76,22 @@ AddEventHandler('boss_phonograph:server:pickUp', function(id)
         -- print("Yes it is : ".. networkEntityId)
         TriggerClientEvent('boss_phonograph:client:removePhonograph', src, id)
         
-        print("[boss_phonograph] Phonograph picked up by player: " .. src .. ", ID: " .. id)
+        -- print("[boss_phonograph] Phonograph picked up by player: " .. src .. ", ID: " .. id)
     else
         -- Player is not the owner, notify them
         TriggerClientEvent('jo.notif.right', src, "You're not the owner!", 'hud_textures', 'times', 'COLOR_RED', 5000)
     end
 
     -- Debug output
-    print("Currently Playing:")
-    for k, v in pairs(currentlyPlaying) do
-        print("Phonograph ID: " .. k .. " | Playing: " .. tostring(v))
-    end
+    -- print("Currently Playing:")
+    -- for k, v in pairs(currentlyPlaying) do
+    --     print("Phonograph ID: " .. k .. " | Playing: " .. tostring(v))
+    -- end
 
-    print("Owner Phonograph:")
-    for k, v in pairs(ownerPhonograph) do
-        print("Player ID: " .. k .. " | Phonograph ID: " .. tostring(v))
-    end
+    -- print("Owner Phonograph:")
+    -- for k, v in pairs(ownerPhonograph) do
+    --     print("Player ID: " .. k .. " | Phonograph ID: " .. tostring(v))
+    -- end
 end)
 
 
@@ -129,8 +129,8 @@ AddEventHandler('boss_phonograph:server:playMusic', function(id, coords, url, vo
         end
     end)
 
-    printTable(currentlyPlaying)
-    printTable(ownerPhonograph)
+    -- printTable(currentlyPlaying)
+    -- printTable(ownerPhonograph)
 end)
 
 RegisterNetEvent('boss_phonograph:server:stopMusic')
@@ -138,16 +138,16 @@ AddEventHandler('boss_phonograph:server:stopMusic', function(id)
     currentlyPlaying[id] = nil
     TriggerClientEvent('boss_phonograph:client:stopMusic', -1, id)
 
-    printTable(currentlyPlaying)
-    printTable(ownerPhonograph)
+    -- printTable(currentlyPlaying)
+    -- printTable(ownerPhonograph)
 end)
 
 RegisterNetEvent('boss_phonograph:server:setVolume')
 AddEventHandler('boss_phonograph:server:setVolume', function(id, volume)
     TriggerClientEvent('boss_phonograph:client:setVolume', -1, id, volume)
 
-    printTable(currentlyPlaying)
-    printTable(ownerPhonograph)
+    -- printTable(currentlyPlaying)
+    -- printTable(ownerPhonograph)
 end)
 
 ----------------
